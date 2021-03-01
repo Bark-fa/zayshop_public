@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %} Zay E-commerce store shop | Shop {% endblock %}
+{% block content %}
+
+<div class="container py-5" hx-swap="innerHTML" hx-target="#products">
+    <div class="row" id="products"> 
+            {% include 'products.html' %}
+    </div>
+</div>
+
+{% include '_partials/_brands.html' %}
+{% endblock %}

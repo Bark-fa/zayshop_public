@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section id="login" class="bg-light p-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-success text-white text-center">
+                        <h4>
+                            <i class="fas fa-sign-in-alt"></i> Reset password</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="{% url 'forgot' %}" method="POST" class="d-flex flex-column justify-content-center">
+                            {% csrf_token %}
+
+                            {% if not_exists %}
+                            <p class="text-danger text-center font-weight-bold mb-3">Sorry! but this email doesn't exist in our records</p>
+                            {% endif %}
+                            <div class="form-group mb-3">
+                                <label for="email">Enter your email</label>
+                                <input type="email" name="email" class="form-control" required>
+                            </div>
+
+                            <input type="submit" value="Reset your password" class="btn btn-success mb-3">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {{ user.username }}'s profile {% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+    <form method="post" id="picform" enctype="multipart/form-data">
+        {% csrf_token %}
+    <div class="row">
+        <div class="col-sm-10"><h1>{{ user.username }}</h1></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3"><!--left col-->
+
+            <div class="text-center">
+                <img src="{{ user.user.avatar.url }}" class="avatar img-circle img-thumbnail" alt="avatar">
+                <h6>Upload a different photo...</h6>
+                <input type="file" name="avatar" class="text-center center-block file-upload">
+            </div></hr>
+        </div></div>
+        <div class="col-sm-9 mb-5">
+
+
+            <div class="tab-content">
+                <div class="tab-pane active" id="home">
+                    <hr>
+
+                        <div class="form-group mb-4">
+
+                            <div class="col-xs-6">
+                                <label for="first_name"><h4>First name</h4></label>
+                                <input disabled type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" value="{{ user.first_name }}" title="enter your first name if any.">
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+
+                            <div class="col-xs-6">
+                                <label for="last_name"><h4>Last name</h4></label>
+                                <input disabled type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" value="{{ user.last_name }}" title="enter your last name if any.">
+                            </div>
+                        </div>
+                        <div class="form-group mb-4">
+
+                            <div class="col-xs-6">
+                                <label for="email"><h4>Email</h4></label>
+                                <input required type="email" class="form-control" name="email" id="email" placeholder="{{ user.email }}" title="enter your email.">
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-4">
+
+                            <div class="col-xs-6 mb-4">
+                                <label for="Username"><h4>Username</h4></label>
+                                <input type="text" required class="form-control" name="username" id="Username" placeholder="{{ user.username }}" title="Enter your username">
+
+                        </div>
+
+                        
+                        <div class="form-group mb-4">
+
+                            <div class="col-xs-6 mb-4">
+                                <label for="password"><h4>New password</h4></label>
+                                <input type="password" required class="form-control" name="password" id="password" placeholder="New password" title="Enter your new password">
+                                </div>
+
+                                <div class="col-xs-6 mb-4">
+                                <label for="password2"><h4>Confirm new password</h4></label>
+                                <input type="password" required class="form-control" name="password2" id="password2" placeholder="Confirm new password" title="Confirm your new password">
+                                </div>
+                            </div>
+
+                        <div class="form-group mb-4">
+                            <div class="col-xs-12">
+                                <br>
+                                <button class="btn btn-lg btn-success" type="button" id="submitbtn"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                {% if error %}
+                                <p class="text-danger text-center font-weight-bold mb-3">{{ error }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+                    <hr>
+
+                </div>
+
+            </div>
+
+    </div>
+</div></form>
+
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'assets/js/jquery-1.11.0.min.js' %}"></script>
+<script>
+    $(document).ready(function() {
+
+
+        const readURL = function (input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('.avatar').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+
+
+        $(".file-upload").on('change', function(){
+            readURL(this);
+        });
+
+        $("#submitbtn").click(function () {
+            $("#picform").submit()
+        })
+    });
+</script>
+{% endblock%}

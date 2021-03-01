@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %} Login to zayshop {% endblock %}
+{% block content %}
+<section id="login" class="bg-light p-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-header bg-success text-white text-center">
+              <h4>
+                <i class="fas fa-sign-in-alt"></i> Login</h4>
+            </div>
+            <div class="card-body">
+              <form action="{% url 'login' %}" id="login-form" method="POST" class="d-flex flex-column justify-content-center">
+                {% if request.GET.success or success%}
+                <p class="text-success text-center font-weight-bold h3">Success! you can now login</p>
+                {% endif %}
+                  {% csrf_token %}
+                <div class="form-group mb-3">
+                  <label for="username">E-mail or username</label>
+                  <input type="text" name="username" class="form-control" required>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="password">Password</label>
+                  <input type="password" name="password" class="form-control" required>
+                </div>
+
+                <input type="button" id="login-button" value="Login" class="btn btn-success mb-3">
+                <p class="text-danger text-center font-weight-bold mb-3" id="error-text">{{ error }}</p>
+                <a href="{% url 'signup' %}" class="text-center text-decoration-none mb-3">Or signup</a>
+                <a href="{% url 'forgot' %}" class="text-center text-decoration-none">Forgot your password?</a>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block javascript %}
+<script>
+  const errorText = $("#error-text")
+  errorText.hide()
+
+  $("#login-button").click(function () {
+    const serializedData = $("#login-form").serialize();
+    $.ajax({
+      type: 'POST',
+      url: "{% url 'login' %}",
+      data: serializedData,
+      error: function (response) {
+        errorText.text(response["responseJSON"]["error"])
+        errorText.show()
+      },
+
+      success: function () {
+        errorText.hide()
+        window.location.href = "{% url 'index' %}"
+      }
+    })
+  })
+
+</script>
+{% endblock %}

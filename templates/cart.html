@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %} Your cart - zayshop {% endblock %}
+{% load humanize %}
+{% block content %}
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading mt-5">Your cart</h1>
+    </div>
+</section>
+
+<div class="container mb-4">
+    <div class="row" hx-swap="innerHTML" hx-target="#items">
+        {% include 'cart_items.html' %}
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12 mb-4 col-md-6">
+                    <a href="{% url 'shop' %}"><button class="btn text-white btn-block btn-success btn-light">Continue Shopping</button></a>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                    <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

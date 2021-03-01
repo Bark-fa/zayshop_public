@@ -1,0 +1,230 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %} {{ product.name }} - zayshop {% endblock %}
+{% block content %}
+<div class="bg-light">
+    <div class="container pb-5">
+        <div class="row">
+            <div class="col-lg-5 mt-5">
+                <div class="card mb-3">
+                    <picture>
+                        <source srcset="{{ product.photo_webp.url }}" type="image/webp">
+                        <img class="card-img img-fluid" src="{{ product.photo_main.url }}" alt="product picture">
+                    </picture>
+                </div>
+                <div class="row">
+                    <!--Start Controls-->
+                    <div class="col-1 align-self-center">
+                        <a href="#multi-item-example" role="button" data-bs-slide="prev">
+                            <i class="text-dark fas fa-chevron-left"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </div>
+                    <!--End Controls-->
+                    <!--Start Carousel Wrapper-->
+                    <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item" data-bs-ride="carousel">
+                        <!--Start Slides-->
+                        <div class="carousel-inner product-links-wap" role="listbox">
+
+                            <!--First slide-->
+                        {% if product.photo_1 %}
+                            <div class="carousel-item active">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <a href="#">
+                                            <img class="card-img img-fluid" src="{{ product.photo_1.url }}" alt="Product Image 1">
+                                        </a>
+                                    </div>
+
+                                    {% if product.photo_2 %}
+                                    <div class="col-4">
+                                        <a href="#">
+                                            <img class="card-img img-fluid" src="{{ product.photo_2.url }}" alt="Product Image 2">
+                                        </a>
+                                    </div>
+                                    {% endif %}
+
+                                    {% if product.photo_3 %}
+                                    <div class="col-4">
+                                        <a href="#">
+                                            <img class="card-img img-fluid" src="{{ product.photo_3.url }}" alt="Product Image 3">
+                                        </a>
+                                    </div>
+                                    {% endif %}
+
+                                </div>
+                            </div>
+                            {% endif %}
+                            <!--/.First slide-->
+
+                            <!--Second slide-->
+                            {% if product.photo_4 %}
+                            <div class="carousel-item">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <a href="#">
+                                            <img class="card-img img-fluid" src="{{ product.photo_4.url }}" alt="Product Image 4">
+                                        </a>
+                                    </div>
+
+                                    {% if product.photo_5 %}
+                                    <div class="col-4">
+                                        <a href="#">
+                                            <img class="card-img img-fluid" src="{{ product.photo_5.url }}" alt="Product Image 5">
+                                        </a>
+                                    </div>
+                                    {% endif %}
+
+                                    {% if product.photo_6 %}
+                                    <div class="col-4">
+                                        <a href="#">
+                                            <img class="card-img img-fluid" src="{{ product.photo_6.url }}" alt="Product Image 6">
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endif %}
+                            <!--/.Second slide-->
+                        </div>
+                        <!--End Slides-->
+                    </div>
+                    <!--End Carousel Wrapper-->
+                    <!--Start Controls-->
+                    <div class="col-1 align-self-center">
+                        <a href="#multi-item-example" role="button" data-bs-slide="next">
+                            <i class="text-dark fas fa-chevron-right"></i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <!--End Controls-->
+                </div>
+            </div>
+            <!-- col end -->
+            <div class="col-lg-7 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="h2">{{ product.name }}</h1>
+                        <p class="h3 py-2">£{{ product.price }}</p>
+                        <p class="py-2">
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-star text-secondary"></i>
+                            <span class="list-inline-item text-dark">Rating 4.8</span>
+                        </p>
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <h6>Brand:</h6>
+                            </li>
+                            <li class="list-inline-item">
+                                <p class="text-muted"><strong>{{ product.brand }}</strong></p>
+                            </li>
+                        </ul>
+
+                        <h6>Description:</h6>
+                        <p>{{ product.description|escape|linebreaks }}</p>
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <h6>Avaliable Color :</h6>
+                            </li>
+                            <li class="list-inline-item">
+                                <p class="text-muted"><strong>{{ product.colors }}</strong></p>
+                            </li>
+                        </ul>
+
+
+                        <form id="item-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="id" value="{{ product.id }}">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <ul class="list-inline pb-3">
+                                        <li class="list-inline-item">Size :
+                                            <input type="hidden" name="size" id="product-size" value="{% if item.size %}{{ item.size }}{% else %}S{% endif %}">
+                                        </li>
+                                        <li class="list-inline-item"><span hx-get="{% url 'change-size' size='S' %}?id={{ product.id }}" hx-swap="none" class="btn {% if item.size == 'S' %}btn-secondary{% else %} btn-success {% endif %} btn-size">S</span></li>
+                                        <li class="list-inline-item"><span hx-get="{% url 'change-size' size='M' %}?id={{ product.id }}" hx-swap="none" class="btn {% if item.size == 'M' %}btn-secondary{% else %} btn-success {% endif %} btn-size">M</span></li>
+                                        <li class="list-inline-item"><span hx-get="{% url 'change-size' size='L' %}?id={{ product.id }}" hx-swap="none" class="btn {% if item.size == 'L' %}btn-secondary{% else %} btn-success {% endif %} btn-size">L</span></li>
+                                        <li class="list-inline-item"><span hx-get="{% url 'change-size' size='XL' %}?id={{ product.id }}" hx-swap="none" class="btn {% if item.size == 'XL' %}btn-secondary{% else %} btn-success {% endif %} btn-size">XL</span></li>
+                                    </ul>
+                                </div>
+                                <div class="col-auto">
+                                    <ul class="list-inline pb-3">
+                                        <li class="list-inline-item text-right">
+                                            Quantity
+                                            <input type="hidden" name="quantity" id="product-quanity" value="1">
+                                        </li>
+                                        <li class="list-inline-item"><span class="btn btn-success" id="btn-minus" hx-get="{% url 'decrease' %}?id={{product.id}}" hx-swap="none">-</span></li>
+                                        <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">{% if item.quantity %}{{item.quantity}}{% else %}1{% endif %}</span></li>
+                                        <li class="list-inline-item"><span class="btn btn-success" id="btn-plus" hx-get="{% url 'increase' %}?id={{product.id}}" hx-swap="none">+</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row pb-3">
+                                <div class="col d-grid">
+                                    <button type="button" class="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
+                                </div>
+                                <div class="col d-grid">
+                                    {% if user.is_authenticated %}
+
+                                        {% if inCart %}
+                                        <button type="button" id="cart-btn" class="btn btn-danger btn-lg" name="cart-btn" value="2">Remove From Cart</button>
+                                        {% else %}
+                                        <button type="button" id="cart-btn" class="btn btn-success btn-lg" name="cart-btn" value="1">Add To Cart</button>
+                                        {% endif %}
+
+                                    {% else %}
+                                    <a href="{% url 'login' %}"><button id="cart-btn" type="button" class="btn btn-success btn-lg" name="cart-btn" value="1">Login To Add To Cart</button></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Close Content -->
+
+{% endblock %}
+
+{% block javascript %}
+{% if user.is_authenticated%}
+<script>
+const itemsSpan = $("#items-inc-cart");
+    $("#cart-btn").click(function () {
+        const serializedData = $("#item-form").serialize();
+        // make POST ajax call
+        if ($("#cart-btn").val() == 1){
+        $.ajax({
+            type: 'POST',
+            url: "{% url 'add_to_cart' %}",
+            data: serializedData,
+            success: function () {
+                $("#cart-btn").removeClass("btn-success").addClass("btn-danger").text("Remove From Cart").val(2);
+                itemsSpan.text(parseInt(itemsSpan.text()) + 1)
+                
+            }
+        })} else if ($("#cart-btn").val() == 2){
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'remove_from_cart' %}",
+                data: serializedData,
+                success: function () {
+                    $("#cart-btn").removeClass("btn-danger").addClass("btn-success").text("Add To Cart").val(1);
+                    itemsSpan.text(parseInt(itemsSpan.text()) - 1)
+                }
+            })
+        }
+    })
+
+
+
+</script>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,56 @@
+<div class="col-12" id="items">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col"> </th>
+                <th scope="col">Product</th>
+                <th scope="col" class="text-center">Quantity</th>
+                <th scope="col" class="text-right">Price</th>
+                <th scope="col" class="text-right">Size</th>
+                <th> </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+            <tr>
+                <td><img width="150px" height="150px" src="{{ item.product.photo_main.url }}" /> </td>
+                <td><a class="text-decoration-none" href="{% url 'item' productid=item.product.id %}">{{ item.product.name }}</a></td>
+                <td class="text-center">{{ item.quantity }}</td>
+                <td class="text-right">{{ item.product.price }}£</td>
+                <td class="text-right">{{item.size}}</td>
+                <td class="text-right"><a hx-get="{% url 'remove_from_cart' %}?id={{item.product.id}}"><button class="btn btn-sm btn-danger remove-btn"><i class="fa fa-trash"></i> </button></a></td>
+
+            </tr>
+            {% endfor %}
+            <tr>
+                <td>Sub-Total</td>
+                <td class="text-right">{{ subtotal }}£</td>
+            </tr>
+            <tr>
+                <td>Shipping</td>
+                <td class="text-right">{% if items %}3£{% endif %}</td>
+            </tr>
+            <tr>
+                <td><strong>Total</strong></td>
+                <td class="text-right"><strong>{%if items %}{{ subtotal|add:"3" }}{% else %}0{% endif %}£</strong></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% block javascript %}
+<script>
+    // I'm not importing JQuery twice for 3 lines of code, so we'll do it with vanilla JS here
+const itemsSpan = document.getElementById("items-inc-cart");
+const removeButtons = document.getElementsByClassName('remove-btn')
+
+for(let i = 0; i < removeButtons.length; i++){
+    removeButtons[i].onclick = function(){
+        itemsSpan.textContent = parseInt(itemsSpan.textContent) - 1;
+    }
+}
+</script>
+
+{% endblock %}

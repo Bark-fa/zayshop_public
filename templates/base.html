@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="{% static 'assets/img/apple-icon.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/img/favicon.ico' %}">
+
+    <link rel="preload" href="{% static 'assets/css/bootstrap.min.css' %}" as="style">
+    <link rel="preload" href="{% static 'assets/css/templatemo.css' %}" as="style">
+    <link rel="preload" href="{% static 'assets/css/custom.css' %}" as="style">
+
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/templatemo.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+
+    <!-- Load fonts style after rendering the layout styles -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap" as="style">
+    <link rel="preload" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" as="style" />
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+</head>
+<body>
+    {% include '_partials/_navbar.html' %}
+
+    {% block content %}{% endblock %}
+    
+    {% include '_partials/_footer.html' %}
+<!-- Start Script -->
+<script src="{% static 'assets/js/jquery-1.11.0.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery-migrate-1.2.1.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}" defer></script>
+<script src="{% static 'assets/js/templatemo.js' %}" defer></script>
+<script src="{% static 'assets/js/custom.js' %}" defer></script>
+<script src="{% static 'assets/js/slick.min.js' %}" defer></script>
+<script src="{% static 'assets/js/slide.js' %}" defer></script>
+<script src="https://unpkg.com/htmx.org@1.1.0"></script>
+
+{% block javascript%}{% endblock %}
+</body>
+
+
+
+
+</html>

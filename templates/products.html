@@ -1,0 +1,207 @@
+{% load static %}
+<div class="col-lg-4">
+        <h1 class="h2 pb-4">Categories</h1>
+
+        <ul class="list-unstyled templatemo-accordion">
+
+            <li class="pb-3">
+                <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                    Gender
+                    <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
+                </a>
+                <ul class="collapse show list-unstyled pl-3 menu1" id="collapseOne">
+                    <li><a class="text-decoration-none"
+                            hx-get="{% url 'updateShop' %}?&gender=men{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=1">Men</a>
+                    </li>
+
+                    <li><a class="text-decoration-none"
+                            hx-get="{% url 'updateShop' %}?&gender=women{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=1">Women</a>
+                    </li>
+
+                    <li><a class="text-decoration-none"
+                            hx-get="{% url 'updateShop' %}?&gender=unisex{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=1">Unisex</a>
+                    </li>
+                    <li><a class="text-decoration-none"
+                            hx-get="{% url 'updateShop' %}?&gender={% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=1">All</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="pb-3">
+                <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                    Size
+                    <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                </a>
+                <ul id="collapseTwo" class="collapse show list-unstyled pl-3 menu2">
+
+                    <li><a class="text-decoration-none"
+                            hx-get="{% url 'updateShop' %}?&size=S{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=2">S</a>
+                    </li>
+
+                    <li><a class="text-decoration-none"
+                            hx-get="{% url 'updateShop' %}?&size=M{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=2">M</a>
+                    </li>
+
+                    <li><a class="text-decoration-none"
+                            hx-get="{% url 'updateShop' %}?&size=L{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=2">L</a>
+                    </li>
+
+                    <li><a class="text-decoration-none"
+                            hx-get="{% url 'updateShop' %}?&size=XL{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=2">XL</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="pb-3">
+                <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
+                    Price
+                    <i class="pull-right fa fa-fw fa-chevron-circle-down mt-1"></i>
+                </a>
+                <ul id="collapseThree" class="collapse show list-unstyled pl-3 menu3">
+                    <li><a class="text-decoration-none"
+                            hx-get="{% url 'updateShop' %}?&price=lth{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=3">Low
+                            to high</a></li>
+
+                    <li><a class="text-decoration-none"
+                            hx-get="{% url 'updateShop' %}?&price=htl{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=3">High
+                            to low</a></li>
+                </ul>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <div class="row" id="row">
+        {% for product in products %}
+        <div class="col-md-4">
+            <div class="card mb-4 product-wap rounded-0">
+                <div class="card rounded-0">
+                    <picture>
+                        <source srcset="{{ product.photo_webp.url }}" type="image/webp">
+                        <img class="card-img rounded-0 img-fluid" src="{{ product.photo_main.url }}"
+                            alt="product picture">
+                    </picture>
+
+                    <div
+                        class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                        <ul class="list-unstyled">
+                            <li>
+                                <form method="POST">
+                                    {% csrf_token %}
+                                <a class="btn btn-success text-white mt-2"
+                                    href="{% url 'item' productid=product.id %}"><i class="far fa-eye"></i></a>
+                                    {% if product.id in ids %}
+                                    <a class="btn btn-danger text-white mt-2 cart-anchor"
+                                       hx-get="{% url 'remove_from_cart' %}?id={{product.id}}" hx-vals='{"add": false}'   hx-swap="none"><i class="fas fa-cart-plus"></i></a>
+                                    {% else %}
+                                    {% if user.is_authenticated %}
+                                    <a class="btn btn-success text-white mt-2 cart-anchor"
+                                       hx-get="{% url 'add_to_cart'%}?id={{product.id}}" hx-vals='{"add": true}' hx-swap="none"><i class="fas fa-cart-plus"></i></a>
+                                    {% else %}
+
+                                    <a class="btn btn-success text-white mt-2"
+                                       href="{% url 'login'%}" hx-vals='{"add": true}'><i class="fas fa-cart-plus"></i></a>
+
+                                    {% endif %}
+                                    {% endif %}
+
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <a href="{% url 'item' productid=product.id %}"
+                        class="h3 text-decoration-none">{{ product.name }}</a>
+                    <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
+                        <li>M/L/X/XL</li>
+                        <li class="pt-2">
+                            <span class="product-color-dot color-dot-red float-left rounded-circle ml-1"></span>
+                            <span class="product-color-dot color-dot-blue float-left rounded-circle ml-1"></span>
+                            <span class="product-color-dot color-dot-black float-left rounded-circle ml-1"></span>
+                            <span class="product-color-dot color-dot-light float-left rounded-circle ml-1"></span>
+                            <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
+                        </li>
+                    </ul>
+                    <ul class="list-unstyled d-flex justify-content-center mb-1">
+                        <li>
+                            <i class="text-warning fa fa-star"></i>
+                            <i class="text-warning fa fa-star"></i>
+                            <i class="text-warning fa fa-star"></i>
+                            <i class="text-muted fa fa-star"></i>
+                            <i class="text-muted fa fa-star"></i>
+                        </li>
+                    </ul>
+                    <p class="text-center mb-0">£{{ product.price }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+
+<div div="row">
+    <ul class="pagination pagination-lg justify-content-end">
+        {% for i in products.paginator.page_range %}
+
+        {% if products.number == i %}
+
+        <li class="page-item disabled text-light">
+            <a class="page-link rounded-0 active mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">{{i}}</a>
+        </li>
+
+        {% else %}
+
+        <li class="page-item"><a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark"
+                href="?page={{i}}{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}">{{i}}</a>
+        </li>
+
+        {% endif %}
+
+        {% endfor %}
+    </ul>
+
+</div>
+ <script src="{% static 'assets/js/jquery-1.11.0.min.js' %}"></script>
+ <script>
+ // Accordion
+const all_panels = $('.templatemo-accordion > li > ul').hide();
+
+$('.templatemo-accordion > li > a').click(function() {
+    const target =  $(this).next();
+    if(!target.hasClass('active')){
+        all_panels.removeClass('active').slideUp();
+        target.addClass('active').slideDown();
+    }
+
+});
+
+$('.menu{{menu}}').show()
+const itemsSpan = $("#items-inc-cart");
+$('.cart-anchor').click(function () {
+
+     if ($(this).hasClass("btn-success")) {
+
+        $(this).removeClass("btn-success");
+        $(this).addClass("btn-danger");
+        $(this).attr("hx-vals", '{"add": true}');
+        itemsSpan.text(parseInt(itemsSpan.text()) + 1)
+
+     } else {
+        $(this).removeClass("btn-danger");
+        $(this).addClass("btn-success");
+        $(this).attr("hx-vals",'{"add": false}');
+        itemsSpan.text(parseInt(itemsSpan.text()) - 1)
+
+     }
+    //  this.classList.toggle("btn-danger")
+    //  this.classList.toggle("btn-success")
+
+ })
+</script>
+
