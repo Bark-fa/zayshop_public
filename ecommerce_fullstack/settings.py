@@ -25,7 +25,7 @@ SECRET_KEY = 'ff9_vibx#zmw6fl9nfecr7j00)x+#zl56d0&c9*opbif-q7*2a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sheltered-island-46970.herokuapp.com']
 
 
 # Application definition
