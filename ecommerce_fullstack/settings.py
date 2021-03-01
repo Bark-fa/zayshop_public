@@ -81,8 +81,13 @@ WSGI_APPLICATION = 'ecommerce_fullstack.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': 'ec2-34-203-255-149.compute-1.amazonaws.com',
+        'NAME': 'dp2057clq3nr8',
+        'PORT': 5432,
+        'USER': 'jjjcwxhtnddthr',
+        'PASSWORD': 'e53194b468281302efb12e212ce9a580d4af9bc441e7c63c7cdb4d6d14f6ec9b'
+        
     }
 }
 
