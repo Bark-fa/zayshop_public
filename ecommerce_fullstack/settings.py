@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'ff9_vibx#zmw6fl9nfecr7j00)x+#zl56d0&c9*opbif-q7*2a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['sheltered-island-46970.herokuapp.com']
 
