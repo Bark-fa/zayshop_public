@@ -67,9 +67,19 @@ body, ul, li, p, a, label, input, div {
   outline:0px !important;
   background: #32994a;
 }
-
 .templatemo-accordion > li > ul {
   display: none;
+}
+
+.product-wap:first-child {
+  transform: translateY(0px);
+  transition: transform 0.5s;
+}
+
+.product-wap:first-child:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 5px 10px 0px rgb(0 0 0 / 20%);
+
 }
 
 .pagination .page-link:hover {color: #000;}
@@ -92,7 +102,7 @@ body, ul, li, p, a, label, input, div {
 /* Shop */
 .shop-top-menu a:hover { color: #69bb7e !important;}
 /* Product */
-.product-wap { box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10);}
+.product-wap { box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.10); transition: box-shadow 0.5s}
 .product-wap .product-color-dot.color-dot-red { background:#f71515;}
 .product-wap .product-color-dot.color-dot-blue { background:#6db4fe;}
 .product-wap .product-color-dot.color-dot-black { background:#000000;}
