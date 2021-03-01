@@ -87,7 +87,6 @@ DATABASES = {
         'PORT': 5432,
         'USER': 'jjjcwxhtnddthr',
         'PASSWORD': 'e53194b468281302efb12e212ce9a580d4af9bc441e7c63c7cdb4d6d14f6ec9b'
-        
     }
 }
 
