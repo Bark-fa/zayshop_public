@@ -29,7 +29,7 @@ def constructQuerySet(getData, defaultSet):
 
     if getData.GET.get('search') and getData.GET.get('search') != "":
         products = Product.objects.filter(
-            Q(name__contains=getData.GET.get('search')) | Q(description__icontains=getData.GET.get('search')),
+            Q(name__icontains=getData.GET.get('search')) | Q(description__icontains=getData.GET.get('search')),
             **arguments)
 
     else:

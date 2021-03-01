@@ -1,3 +1,4 @@
+{% load humanize %}
 {% load static %}
 <div class="col-lg-4">
         <h1 class="h2 pb-4">Categories</h1>
@@ -135,7 +136,7 @@
                             <i class="text-muted fa fa-star"></i>
                         </li>
                     </ul>
-                    <p class="text-center mb-0">£{{ product.price }}</p>
+                    <p class="text-center mb-0">£{{ product.price|intcomma }}</p>
                 </div>
             </div>
         </div>
