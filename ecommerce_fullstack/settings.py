@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
-import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'ff9_vibx#zmw6fl9nfecr7j00)x+#zl56d0&c9*opbif-q7*2a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['sheltered-island-46970.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -82,12 +81,8 @@ WSGI_APPLICATION = 'ecommerce_fullstack.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': 'ec2-34-203-255-149.compute-1.amazonaws.com',
-        'NAME': 'dp2057clq3nr8',
-        'PORT': 5432,
-        'USER': 'jjjcwxhtnddthr',
-        'PASSWORD': 'e53194b468281302efb12e212ce9a580d4af9bc441e7c63c7cdb4d6d14f6ec9b'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -152,5 +147,3 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'zayshopmail@gmail.com'
 EMAIL_HOST_PASSWORD = 'nfxwewbajagtnpwf'
 EMAIL_USE_TLS = True
-
-django_heroku.settings(locals())
