@@ -46,19 +46,19 @@ def signup(request):
 
             if password == password2:
                 if User.objects.filter(username=username).exists():
-                    error = 'That username is taken'
+                    error = 'This username is taken'
                     return JsonResponse({"error": error}, status=400)
                 else:
                     if User.objects.filter(email=email).exists():
-                        error = 'That email is already in use'
+                        error = 'This email is already in use'
                         return JsonResponse({"error": error}, status=400)
                     else:
                         user = User.objects.create_user(username=username, password=password, email=email,
                                                         first_name=first_name, last_name=last_name)
                         user.save()
-                        return JsonResponse({'success': True}, status=200)
+                        return JsonResponse({"success": True}, status=200)
             else:
-                error = 'Passwords mismatch'
+                error = 'Your passwords don\'t match'
                 return JsonResponse({"error": error}, status=400)
 
         else:

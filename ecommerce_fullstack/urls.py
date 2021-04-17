@@ -10,7 +10,7 @@ urlpatterns = [
 
     # Admin Views
     path('jet/', include('jet.urls', 'jet')),
-    path('jehc/40055004/', admin.site.urls),
+    path('admin/', admin.site.urls),
     
     # Shop Views
     path('', views.index, name='index'),

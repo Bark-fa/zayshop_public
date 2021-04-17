@@ -83,8 +83,8 @@ def shop(request):
     paginator = Paginator(products, 9)
     page = request.GET.get('page')
     paged_products = paginator.get_page(page)
+    del ids[:]
     if request.user.is_authenticated:
-        del cartIds[:]
         collectCartItems(request, products)
     if cartIds:
         return render(request, 'shop.html', {'products': paged_products, 'ids': ids})

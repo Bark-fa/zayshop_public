@@ -12,7 +12,7 @@
             </div>
             <div class="card-body">
               <form action="{% url 'login' %}" id="login-form" method="POST" class="d-flex flex-column justify-content-center">
-                {% if request.GET.success or success%}
+                {% if request.GET.success or success %}
                 <p class="text-success text-center font-weight-bold h3">Success! you can now login</p>
                 {% endif %}
                   {% csrf_token %}
