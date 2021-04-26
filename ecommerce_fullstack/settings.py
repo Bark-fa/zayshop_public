@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'secret_key'
+SECRET_KEY = 'ff9_vibx#zmw6fl9nfecr7j00)x+#zl56d0&c9*opbif-q7*2a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -144,6 +144,6 @@ MEDIA_URL = '/media/'
 # Email config
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'email@gmail.com'
-EMAIL_HOST_PASSWORD = 'password'
+EMAIL_HOST_USER = 'zayshopmail@gmail.com'
+EMAIL_HOST_PASSWORD = 'nfxwewbajagtnpwf'
 EMAIL_USE_TLS = True

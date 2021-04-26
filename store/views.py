@@ -19,7 +19,7 @@ def about(request):
     return render(request, 'about.html')
 
 
-def constructQuerySet(getData, defaultSet):
+def constructQuery(getData, defaultQuery=False):
     values = {getData.GET.get("size"): True, 'genders': getData.GET.get('gender')}
     arguments = {}
 
@@ -33,8 +33,8 @@ def constructQuerySet(getData, defaultSet):
             **arguments)
 
     else:
-        if defaultSet:
-            products = Product.objects.all()
+        if defaultQuery:
+            products = Product.objects.all().order_by('list_date')
         else:
             products = Product.objects.filter(**arguments)
 
@@ -48,7 +48,7 @@ def constructQuerySet(getData, defaultSet):
 
 
 def updateShop(request):
-    products = constructQuerySet(request, False)
+    products = constructQuery(request)
 
     paginator = Paginator(products, 9)
     page = request.GET.get('page')
@@ -60,9 +60,8 @@ def updateShop(request):
     if cartIds:
         del cartIds[:]
         return render(request, 'products.html',
-                      {'products': paged_products, 'ids': ids, 'menu': request.GET.get('menu')})
-    else:
-        return render(request, 'products.html', {'products': paged_products, 'menu': request.GET.get('menu')})
+                      {'products': paged_products, 'ids': ids, 'menu': request.GET.get('menu')})  
+    return render(request, 'products.html', {'products': paged_products, 'menu': request.GET.get('menu')})
 
 
 def collectCartItems(req, prods):
@@ -78,7 +77,7 @@ def collectCartItems(req, prods):
 
 
 def shop(request):
-    products = constructQuerySet(request, True)
+    products = constructQuery(request, True)
 
     paginator = Paginator(products, 9)
     page = request.GET.get('page')
@@ -88,8 +87,7 @@ def shop(request):
         collectCartItems(request, products)
     if cartIds:
         return render(request, 'shop.html', {'products': paged_products, 'ids': ids})
-    else:
-        return render(request, 'shop.html', {'products': paged_products})
+    return render(request, 'shop.html', {'products': paged_products})
 
 
 def contact(request):
