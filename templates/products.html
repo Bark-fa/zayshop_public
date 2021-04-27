@@ -1,6 +1,5 @@
 {% load humanize %}
 {% load static %}
-{{ids}}
 <div class="col-lg-4">
         <h1 class="h2 pb-4">Categories</h1>
 
@@ -13,18 +12,18 @@
                 </a>
                 <ul class="collapse show list-unstyled pl-3 menu1" id="collapseOne">
                     <li><a class="text-decoration-none"
-                            hx-get="{% url 'updateShop' %}?&gender=men{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=1">Men</a>
+                            hx-get="{% url 'shop' %}?&gender=men{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=1">Men</a>
                     </li>
 
                     <li><a class="text-decoration-none"
-                            hx-get="{% url 'updateShop' %}?&gender=women{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=1">Women</a>
+                            hx-get="{% url 'shop' %}?&gender=women{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=1">Women</a>
                     </li>
 
                     <li><a class="text-decoration-none"
-                            hx-get="{% url 'updateShop' %}?&gender=unisex{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=1">Unisex</a>
+                            hx-get="{% url 'shop' %}?&gender=unisex{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=1">Unisex</a>
                     </li>
                     <li><a class="text-decoration-none"
-                            hx-get="{% url 'updateShop' %}?&gender={% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=1">All</a>
+                            hx-get="{% url 'shop' %}?&gender={% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=1">All</a>
                     </li>
 
                 </ul>
@@ -38,19 +37,19 @@
                 <ul id="collapseTwo" class="collapse show list-unstyled pl-3 menu2">
 
                     <li><a class="text-decoration-none"
-                            hx-get="{% url 'updateShop' %}?&size=S{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=2">S</a>
+                            hx-get="{% url 'shop' %}?&size=S{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=2">S</a>
                     </li>
 
                     <li><a class="text-decoration-none"
-                            hx-get="{% url 'updateShop' %}?&size=M{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=2">M</a>
+                            hx-get="{% url 'shop' %}?&size=M{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=2">M</a>
                     </li>
 
                     <li><a class="text-decoration-none"
-                            hx-get="{% url 'updateShop' %}?&size=L{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=2">L</a>
+                            hx-get="{% url 'shop' %}?&size=L{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=2">L</a>
                     </li>
 
                     <li><a class="text-decoration-none"
-                            hx-get="{% url 'updateShop' %}?&size=XL{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=2">XL</a>
+                            hx-get="{% url 'shop' %}?&size=XL{% if request.GET.price %}&price={{ request.GET.price }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=2">XL</a>
                     </li>
 
                 </ul>
@@ -63,11 +62,11 @@
                 </a>
                 <ul id="collapseThree" class="collapse show list-unstyled pl-3 menu3">
                     <li><a class="text-decoration-none"
-                            hx-get="{% url 'updateShop' %}?&price=lth{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=3">Low
+                            hx-get="{% url 'shop' %}?&price=lth{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=3">Low
                             to high</a></li>
 
                     <li><a class="text-decoration-none"
-                            hx-get="{% url 'updateShop' %}?&price=htl{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=3">High
+                            hx-get="{% url 'shop' %}?&price=htl{% if request.GET.size %}&size={{ request.GET.size }}{% endif %}{% if request.GET.gender %}&gender={{ request.GET.gender }}{% endif %}{% if request.GET.search %}&search={{ request.GET.search }}{% endif %}{% if request.GET.page %}&page={{ request.GET.page }}{% endif %}&menu=3">High
                             to low</a></li>
                 </ul>
             </li>

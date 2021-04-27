@@ -3,8 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpResponse
 from .models import Item, Product, User
 
-
-# Ignore the unnecessary elses after returns, they are there for readability purposes as some functions can get a bit long.
+# Ignore the unnecessary else statements after returns, they are there for readability purposes as some functions can get a bit long.
 
 @login_required()
 def index(request, calledFromRemove=False):
